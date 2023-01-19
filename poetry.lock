@@ -90,7 +90,7 @@ test = ["pytest (>=6)"]
 
 [[package]]
 name = "geoh5py"
-version = "0.5.0"
+version = "0.6.0-alpha"
 description = "Python API for geoh5, an open file format for geoscientific data"
 category = "main"
 optional = false
