@@ -35,7 +35,7 @@ numpy = "!=1.19.4, ~1.23.5"
 pylint = "*"
 pytest = "*"
 pytest-cov = "*"
-requests = "^2.27.1" # for tests only
+requests = "^2.31.0" # for tests only
 tomli = "*"
 
 
