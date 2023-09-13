@@ -27,6 +27,7 @@ jobs:
         JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
         JIRA_BASIC_AUTH: ${{ secrets.JIRA_BASIC_AUTH }}
       run: >
+        error
         curl -sS -X GET
         -H "Authorization: Basic $JIRA_BASIC_AUTH"
         -H "Content-Type: application/json"
