@@ -25,7 +25,7 @@ def generate(
     """
     Generate an *_sweep.ui.json file to sweep parameters of the driver associated with 'file'.
 
-    :param file: Name of .ui.json file
+    :param file: Name of a .ui.json file
     :param parameters: Parameters to include in the _sweep.ui.json file
     :param update_values: Updates for sweep files parameters
     """
