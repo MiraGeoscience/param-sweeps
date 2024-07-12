@@ -63,9 +63,8 @@ jobs:
       run: poetry run pytest --cov --cov-report=xml
     - name: Codecov
       if: ${{ success() && matrix.python_ver == '3.10' }}
-      uses: codecov/codecov-action@v4
+      uses: codecov/codecov-action@v4.5.0
       with:
         name: GitHub
         fail_ci_if_error: true
         token: ${{ secrets.CODECOV_TOKEN }}
-        os: alpine
