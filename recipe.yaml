@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: param-sweeps
-  version: 0.2.0b1
+  version: 0.3.0a1
 
 package:
   name: ${{ name|lower }}
@@ -27,7 +27,7 @@ requirements:
   run:
     - python >=3.10.0,<4
     - numpy >=1.26.0,<1.27.0
-    - geoh5py >=0.10.0a1,<0.11.0a0.dev0
+    - geoh5py >=0.10.0b1,<0.11.0a.dev
 
 tests:
   - python:
