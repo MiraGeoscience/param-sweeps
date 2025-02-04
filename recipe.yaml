@@ -1,8 +1,6 @@
-schema_version: 1
+{% set name = "param-sweeps" %}
+{% set version = "0.3.0a1" %}
 
-context:
-  name: param-sweeps
-  version: 0.3.0a1
 
 package:
   name: ${{ name|lower }}
