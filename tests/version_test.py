@@ -1,9 +1,12 @@
-#  Copyright (c) 2024 Mira Geoscience Ltd.
-#
-#  This file is part of param-sweeps.
-#
-#  param-sweeps is distributed under the terms and conditions of the MIT License
-#  (see LICENSE file at the root of this source code package).
+# '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+#  Copyright (c) 2022-2025 Mira Geoscience Ltd.                                   '
+#                                                                                 '
+#  This file is part of param-sweeps package.                                     '
+#                                                                                 '
+#  param-sweeps is distributed under the terms and conditions of the MIT License  '
+#  (see LICENSE file at the root of this source code package).                    '
+#                                                                                 '
+# '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 from __future__ import annotations
 
@@ -11,11 +14,14 @@ import re
 from pathlib import Path
 
 import tomli as toml
+import yaml
+from jinja2 import Template
+from packaging.version import Version
 
 import param_sweeps
 
 
-def get_version():
+def get_pyproject_version():
     path = Path(__file__).resolve().parents[1] / "pyproject.toml"
 
     with open(str(path), encoding="utf-8") as file:
@@ -24,8 +30,30 @@ def get_version():
     return pyproject["tool"]["poetry"]["version"]
 
 
+def get_conda_recipe_version():
+    path = Path(__file__).resolve().parents[1] / "meta.yaml"
+
+    with open(str(path), encoding="utf-8") as file:
+        content = file.read()
+
+    template = Template(content)
+    rendered_yaml = template.render()
+
+    recipe = yaml.safe_load(rendered_yaml)
+
+    return recipe["package"]["version"]
+
+
 def test_version_is_consistent():
-    assert param_sweeps.__version__ == get_version()
+    assert param_sweeps.__version__ == get_pyproject_version()
+    normalized_conda_version = Version(get_conda_recipe_version())
+    normalized_version = Version(param_sweeps.__version__)
+    assert normalized_conda_version == normalized_version
+
+
+def test_conda_version_is_pep440():
+    version = Version(get_conda_recipe_version())
+    assert version is not None
 
 
 def test_version_is_semver():

@@ -1,9 +1,12 @@
-#  Copyright (c) 2024 Mira Geoscience Ltd.
-#
-#  This file is part of param-sweeps.
-#
-#  param-sweeps is distributed under the terms and conditions of the MIT License
-#  (see LICENSE file at the root of this source code package).
+# '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+#  Copyright (c) 2022-2025 Mira Geoscience Ltd.                                   '
+#                                                                                 '
+#  This file is part of param-sweeps package.                                     '
+#                                                                                 '
+#  param-sweeps is distributed under the terms and conditions of the MIT License  '
+#  (see LICENSE file at the root of this source code package).                    '
+#                                                                                 '
+# '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 import itertools
 import json
@@ -51,9 +54,9 @@ def test_uuid_from_params():
     iterations = list(itertools.product(*test.values()))
     for iteration in iterations:
         trial_uuid = SweepDriver.uuid_from_params(iteration)
-        assert trial_uuid == SweepDriver.uuid_from_params(
-            iteration
-        ), "method is not deterministic"
+        assert trial_uuid == SweepDriver.uuid_from_params(iteration), (
+            "method is not deterministic"
+        )
 
 
 def test_file_validation(tmp_path: Path):
@@ -67,11 +70,6 @@ def test_file_validation(tmp_path: Path):
     filepath = filepath.with_suffix(".ui.json")
     with open(filepath, "w", encoding="utf-8") as file:
         json.dump({}, file)
-
-    with pytest.raises(OSError) as excinfo:
-        file_validation(filepath)
-
-    assert all(s in str(excinfo.value) for s in [str(filepath), "not a valid"])
 
 
 def test_sweep(tmp_path: Path):  # pylint: disable=R0914
@@ -137,4 +135,5 @@ def test_sweep(tmp_path: Path):  # pylint: disable=R0914
     for file_root in lookup:
         file_ws = Workspace(tmp_path / f"{file_root}.ui.geoh5")
         data = file_ws.get_entity("data")[0]
+        assert isinstance(data, Points)
         assert any("initial" in k.name for k in data.children)

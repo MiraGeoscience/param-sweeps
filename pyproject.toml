@@ -1,13 +1,13 @@
 [tool.poetry]
 name = "param-sweeps"
-version = "0.1.8"
+version = "0.2.0"
 
 description = "Parameter sweeper for ui.json powered applications"
 license = "MIT"
 authors = ["Mira Geoscience <support@mirageoscience.com>"]
 maintainers = ["Benjamin Kary <benjamink@mirageoscience.com>"]
 repository = "https://github.com/MiraGeoscience/param-sweeps"
-#documentatio  = "https://mirageoscience-param-sweeps.readthedocs-hosted.com/"
+#documentation  = "https://mirageoscience-param-sweeps.readthedocs-hosted.com/"
 homepage = "https://www.mirageoscience.com/mining-industry-software/python-integration/"
 
 readme = "README.rst"
@@ -27,38 +27,70 @@ classifiers = [
 ]
 
 include = [
-    { path = "COPYING", format = ["sdist", "wheel"] },
-    { path = "COPYING.LESSER", format = ["sdist", "wheel"] },
-    { path = "LICENSE", format = ["sdist", "wheel"] },
-    { path = "README.rst", format = ["sdist", "wheel"] },
-    { path = "THIRD_PARTY_SOFTWARE.rst", format = ["sdist", "wheel"] },
-    { path = "docs/**/THIRD_PARTY_SOFTWARE.rst", format = ["sdist", "wheel"] },
+    { path = "COPYING" },
+    { path = "COPYING.LESSER" },
+    { path = "LICENSE" },
+    { path = "README.rst" },
+    { path = "THIRD_PARTY_SOFTWARE.rst" },
+    { path = "docs/**/THIRD_PARTY_SOFTWARE.rst" },
 ]
 
 [tool.poetry.dependencies]
-python = "^3.9,<3.11"
+python = "^3.10"
 
-numpy = "~1.23.5"  # also in geoh5py
+numpy = "~1.26.0"  # also in geoh5py
 
 ## dependencies from Git repositories
 #------------------------------------
-geoh5py = {version = "~0.9.0", allow-prereleases = true}
-#geoh5py = {git = "https://github.com/MiraGeoscience/geoh5py.git", branch = "release/0.9.0"}
-#geoh5py = {url = "https://github.com/MiraGeoscience/geoh5py/archive/refs/heads/release/0.9.0.zip#sha256="}
-#geoh5py = {url = "http://localhost:8888/geoh5py.tar.gz#sha256="}
+geoh5py = {version = ">=0.10.0b1, <0.11.0a.dev", allow-prereleases = true}
+#geoh5py = {git = "https://github.com/MiraGeoscience/geoh5py.git", rev = "release/0.10.0"}
+#geoh5py = {path = "../geoh5py", develop = true}
 
 [tool.poetry.group.dev.dependencies]
 Pygments = "*"
 pylint = "*"
 pytest = "*"
 pytest-cov = "*"
+pyyaml = '*'
+jinja2 = '*'
+packaging = '*'
 tomli = "*"
 
-[tool.isort]
-profile = "black"
+[tool.ruff]
+target-version = "py310"
 
-[tool.black]
-# defaults are just fine
+[tool.ruff.lint]
+ignore = [
+    "B028",  # no-explicit-stacklevel for warnings.warn()
+    "E501",  # line-too-long - code is reformatted (do not care about comments and docstring)
+    "F401",  # unsused-import - covered by pycln
+    "RUF005",  # collection-literal-concatenation - wrong suggestion with numpy arrays
+]
+select = [
+    "A",  # flake8-builtins
+    "B",  # flake8-bugbear
+    "B006",  # Do not use mutable data structures for argument defaults
+    "B9",  # flake8-bugbear opiniated warnings
+    "BLE",  # flake8-blind-except
+    "C4",  # flake8-comprehensions
+    "C9",  # mccabe
+    "E",  # pycodestyle errors
+    "F",  # pyflakes
+    "I",  # isort
+    "RUF",  # ruff rules
+    "TID", # flake8-tidy-imports
+    "UP",  # pyupgrade
+    "W",  # pycodestyle warnings
+]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 18
+
+[tool.ruff.lint.isort]
+lines-after-imports = 2
+
+[tool.ruff.format]
+# default formatting is just fine
 
 [tool.mypy]
 warn_unused_configs = true

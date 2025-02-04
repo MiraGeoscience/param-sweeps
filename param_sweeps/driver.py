@@ -1,9 +1,12 @@
-#  Copyright (c) 2024 Mira Geoscience Ltd.
-#
-#  This file is part of param-sweeps.
-#
-#  param-sweeps is distributed under the terms and conditions of the MIT License
-#  (see LICENSE file at the root of this source code package).
+# '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+#  Copyright (c) 2022-2025 Mira Geoscience Ltd.                                   '
+#                                                                                 '
+#  This file is part of param-sweeps package.                                     '
+#                                                                                 '
+#  param-sweeps is distributed under the terms and conditions of the MIT License  '
+#  (see LICENSE file at the root of this source code package).                    '
+#                                                                                 '
+# '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 from __future__ import annotations
 
@@ -129,7 +132,7 @@ class SweepDriver:
         iterations = list(itertools.product(*sets.values()))
         for iteration in iterations:
             param_uuid = SweepDriver.uuid_from_params(iteration)
-            lookup[param_uuid] = dict(zip(sets.keys(), iteration))
+            lookup[param_uuid] = dict(zip(sets.keys(), iteration, strict=False))
             lookup[param_uuid]["status"] = "pending"
 
         lookup = self.update_lookup(lookup, gather_first=True)

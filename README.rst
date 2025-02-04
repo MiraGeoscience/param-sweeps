@@ -16,20 +16,20 @@ application, use the following command::
 
     $ python -m param_sweeps.generate some_file.ui.json
 
-This will create a new `some_file_sweep.ui.json` file that may be run
+This will create a new ``some_file_sweep.ui.json`` file that may be run
 with::
 
     $ python -m param_sweeps.driver some_file_sweep.ui.json
 
 By default, this would execute a single run of the original parameters.
-To design a sweep, simply drag the `some_file_sweep.ui.json` file into
+To design a sweep, simply drag the ``some_file_sweep.ui.json`` file into
 `Geoscience ANALYST Pro <https://mirageoscience.com/mining-industry-software/geoscience-analyst-pro/>`_.
 session that produced the original file and select start, end, and number
 of samples values for parameters that you would like to sweep.
 
 
-To organize the output, param-sweeps uses a `UUID` file naming scheme, with
-a `lookup.json` file to map individual parameter sets back to their respective
+To organize the output, param-sweeps uses a ``UUID`` file naming scheme, with
+a ``lookup.json`` file to map individual parameter sets back to their respective
 files.
 
 
@@ -71,4 +71,4 @@ Third Party Software notices and/or additional terms and conditions are located 
 
 Copyright
 ^^^^^^^^^
-Copyright (c) 2024 Mira Geoscience Ltd.
+Copyright (c) 2022-2025 Mira Geoscience Ltd.
