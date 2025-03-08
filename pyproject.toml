@@ -41,7 +41,7 @@ numpy = "~1.26.0"  # also in geoh5py
 
 ## dependencies from Git repositories
 #------------------------------------
-#geoh5py = {version = ">=0.11.0-alpha.1, <0.12", allow-prereleases = true}
+#geoh5py = {version = ">=0.11.0-alpha.1, <0.12.dev", allow-prereleases = true}
 geoh5py = {git = "https://github.com/MiraGeoscience/geoh5py.git", rev = "develop"}
 #geoh5py = {path = "../geoh5py", develop = true}
 
