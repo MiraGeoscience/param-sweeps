@@ -36,11 +36,14 @@ tests:
   - python:
       imports:
         - param_sweeps
-  - requirements:
+  - script:
+      - pytest ./tests
+    requirements:
       run:
-        - pip
-    script:
-      - pip check
+        - pytest
+    files:
+      source:
+        - tests/
 
 about:
   summary: A Parameter sweeper for applications driven by ui.json files.
