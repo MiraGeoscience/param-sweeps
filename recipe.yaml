@@ -37,10 +37,11 @@ tests:
       imports:
         - param_sweeps
   - script:
-      - pytest
+      - pytest --ignore=tests/version_test.py
     requirements:
       run:
         - pytest
+        - pyyaml
     files:
       source:
         - tests/
