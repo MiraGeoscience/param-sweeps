@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "param-sweeps"
-version = "0.3.0-alpha.2"
+version = "0.2.1-alpha.1"
 
 description = "Parameter sweeper for ui.json powered applications."
 license = "MIT"
@@ -42,7 +42,7 @@ numpy = "~1.26.0"  # also in geoh5py
 ## dependencies from Git repositories
 #------------------------------------
 #geoh5py = {version = ">=0.11.0-alpha.1, <0.12.dev", allow-prereleases = true}
-geoh5py = {git = "https://github.com/MiraGeoscience/geoh5py.git", rev = "develop"}
+geoh5py = {git = "https://github.com/MiraGeoscience/geoh5py.git", rev = "release/0.11.0-a.3"}
 #geoh5py = {path = "../geoh5py", develop = true}
 
 [tool.poetry.group.dev.dependencies]
