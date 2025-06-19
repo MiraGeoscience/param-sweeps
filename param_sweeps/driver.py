@@ -104,12 +104,11 @@ class SweepDriver:
             raise ValueError("Workspace must be specified.")
 
         self.params: SweepParams = params
-        self.workspace: Workspace = params.geoh5
-
-        if isinstance(self.workspace.h5file, BytesIO) or self.workspace.h5file is None:
+        workspace = params.geoh5
+        if isinstance(workspace.h5file, BytesIO) or workspace.h5file is None:
             raise ValueError("Workspace must be saved to disk.")
 
-        self.working_directory = str(Path(self.workspace.h5file).parent)
+        self.working_directory = str(Path(workspace.h5file).parent)
         lookup = self.get_lookup()
         self.write_files(lookup)
 
