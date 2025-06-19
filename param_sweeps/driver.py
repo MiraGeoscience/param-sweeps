@@ -153,6 +153,9 @@ class SweepDriver:
     def write_files(self, lookup):
         """Write ui.geoh5 and ui.json files for sweep trials."""
 
+        if self.params.worker_uijson is None:
+            raise ValueError("Worker ui.json file path must be specified.")
+
         ifile = InputFile.read_ui_json(self.params.worker_uijson)
         with ifile.data["geoh5"].open(mode="r") as workspace:
             for name, trial in lookup.items():
@@ -162,10 +165,10 @@ class SweepDriver:
                 iter_h5file = str(Path(workspace.h5file).parent / f"{name}.ui.geoh5")
                 shutil.copy(workspace.h5file, iter_h5file)
 
-                ifile.data.update(
+                ifile.update_ui_values(
                     dict(
                         {key: val for key, val in trial.items() if key != "status"},
-                        **{"geoh5": iter_h5file},
+                        **{"geoh5": Workspace(iter_h5file)},
                     )
                 )
 
