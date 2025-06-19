@@ -164,10 +164,10 @@ class SweepDriver:
                 iter_h5file = str(Path(workspace.h5file).parent / f"{name}.ui.geoh5")
                 shutil.copy(workspace.h5file, iter_h5file)
 
-                ifile.data.update(
+                ifile.update_ui_values(
                     dict(
                         {key: val for key, val in trial.items() if key != "status"},
-                        **{"geoh5": iter_h5file},
+                        **{"geoh5": Workspace(iter_h5file)},
                     )
                 )
 
