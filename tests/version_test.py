@@ -16,7 +16,7 @@ from pathlib import Path
 import tomli as toml
 import yaml
 from jinja2 import Template
-from packaging.version import Version
+from packaging.version import InvalidVersion, Version
 
 import param_sweeps
 
@@ -56,11 +56,13 @@ def test_conda_version_is_pep440():
     assert version is not None
 
 
-def test_version_is_semver():
-    semver_re = (
-        r"^(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)"
-        r"(?:-(?P<prerelease>(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)"
-        r"(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?"
-        r"(?:\+(?P<buildmetadata>[0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$"
-    )
-    assert re.search(semver_re, param_sweeps.__version__) is not None
+def validate_version(version_str):
+    try:
+        version = Version(version_str)
+        return (version.major, version.minor, version.micro, version.pre, version.post)
+    except InvalidVersion:
+        return None
+
+
+def test_version_is_valid():
+    assert validate_version(param_sweeps.__version__) is not None
