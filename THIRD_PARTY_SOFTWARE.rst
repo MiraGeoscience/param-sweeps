@@ -1,7 +1,7 @@
 Third-party software
 ====================
 
-The mira-omf repository and source distributions bundle several libraries that are
+The params-sweep repository and source distributions bundle several libraries that are
 compatibly licensed.  We list these here.
 
 .. list-table::

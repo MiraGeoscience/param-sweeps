@@ -1,8 +1,8 @@
 [tool.poetry]
 name = "param-sweeps"
-version = "0.2.0"
+version = "0.2.1"
 
-description = "Parameter sweeper for ui.json powered applications"
+description = "Parameter sweeper for ui.json powered applications."
 license = "MIT"
 authors = ["Mira Geoscience <support@mirageoscience.com>"]
 maintainers = ["Benjamin Kary <benjamink@mirageoscience.com>"]
@@ -10,7 +10,7 @@ repository = "https://github.com/MiraGeoscience/param-sweeps"
 #documentation  = "https://mirageoscience-param-sweeps.readthedocs-hosted.com/"
 homepage = "https://www.mirageoscience.com/mining-industry-software/python-integration/"
 
-readme = "README.rst"
+readme = "package.rst"
 keywords = ["geology", "geophysics", "earth sciences"]
 classifiers = [
     "Development Status :: 4 - Beta",
@@ -30,7 +30,6 @@ include = [
     { path = "COPYING" },
     { path = "COPYING.LESSER" },
     { path = "LICENSE" },
-    { path = "README.rst" },
     { path = "THIRD_PARTY_SOFTWARE.rst" },
     { path = "docs/**/THIRD_PARTY_SOFTWARE.rst" },
 ]
@@ -42,8 +41,8 @@ numpy = "~1.26.0"  # also in geoh5py
 
 ## dependencies from Git repositories
 #------------------------------------
-geoh5py = {version = ">=0.10.0b1, <0.11.0a.dev", allow-prereleases = true}
-#geoh5py = {git = "https://github.com/MiraGeoscience/geoh5py.git", rev = "release/0.10.0"}
+geoh5py = {version = ">=0.11.0a3, <0.12.dev", allow-prereleases = true}
+#geoh5py = {git = "https://github.com/MiraGeoscience/geoh5py.git", rev = "release/0.11.0"}
 #geoh5py = {path = "../geoh5py", develop = true}
 
 [tool.poetry.group.dev.dependencies]
