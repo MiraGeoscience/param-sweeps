@@ -1,3 +1,9 @@
+
+
+.. warning::
+    **DEPRECATED** - See instead https://github.com/MiraGeoscience/geoapps-utils
+
+
 Param-sweeps
 ============
 
